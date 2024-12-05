@@ -11,5 +11,17 @@ config_version=5
 [application]
 
 config/name="atljam-2024"
+run/main_scene="res://root.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://addons/jam_essentials/scenes/SceneManager.tscn"
+GlobalCamera="*res://addons/jam_essentials/scenes/GlobalCamera.tscn"
+SoundController="*res://addons/jam_essentials/scenes/SoundController.tscn"
+ExpDecay="*res://singletons/ExpDecay.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/jam_essentials/plugin.cfg")
