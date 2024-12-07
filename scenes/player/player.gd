@@ -20,6 +20,7 @@ const AIRBORNE_ADJUST := 0.03
 @onready var kick_left_particles: GPUParticles2D = $KickLeft/GPUParticles2D
 @onready var kick_right_particles: GPUParticles2D = $KickRight/GPUParticles2D
 @onready var kick_down_particles: GPUParticles2D = $KickDown/GPUParticles2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var state = States.IDLE
 var jump_horizontal_dir := 0.0
@@ -78,8 +79,15 @@ func _process(delta: float) -> void:
 		if direction:
 			state = States.RUNNING
 			velocity.x = direction * FLOOR_SPEED
+			
+			if direction > 0.0:
+				sprite.flip_h = true
+			if direction < 0.0:
+				sprite.flip_h = false
+			sprite.play("walk")
 		else:
 			state = States.IDLE
+			sprite.play("idle")
 			velocity.x = move_toward(velocity.x, 0, FLOOR_SPEED)
 		
 		if Input.is_action_just_pressed("action_jump") and is_on_floor():
