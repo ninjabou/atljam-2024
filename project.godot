@@ -20,8 +20,12 @@ config/icon="res://icon.svg"
 SceneManager="*res://addons/jam_essentials/scenes/SceneManager.tscn"
 GlobalCamera="*res://addons/jam_essentials/scenes/GlobalCamera.tscn"
 SoundController="*res://addons/jam_essentials/scenes/SoundController.tscn"
-ExpDecay="*res://singletons/ExpDecay.gd"
+ExpDecay="*res://autoloads/ExpDecay.gd"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/jam_essentials/plugin.cfg")
+
+[physics]
+
+2d/default_gravity=1200.0
