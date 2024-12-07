@@ -5,7 +5,7 @@ signal finish_transition
 
 
 const TRANSITION_TIME = 2.0
-const LERP_WEIGHT = 0.1
+const LERP_WEIGHT = 7
 
 const SHAKE = 0.5
 const DECAY = 0.8
@@ -39,7 +39,8 @@ func _ready():
 
 
 func _process(delta):
-	ExpDecay.expDecay(position, get_effective_aim_pos(), LERP_WEIGHT, delta)
+	position = ExpDecay.expDecay(position, get_effective_aim_pos(), LERP_WEIGHT, delta)
+
 	
 	if trauma:
 		trauma = max(trauma - DECAY * delta, 0)
