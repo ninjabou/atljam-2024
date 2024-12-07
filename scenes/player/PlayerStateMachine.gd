@@ -8,6 +8,7 @@ func _ready() -> void:
 	call_deferred("add_state", states.idle)
 
 func _state_logic(delta):
+	print("FUCK")
 	pass
 
 func _get_transition(delta):
