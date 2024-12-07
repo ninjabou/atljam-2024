@@ -3,4 +3,4 @@
 /android/
 
 # vivi's idiot mac specific ignores
-.DS_Store/
+*/.DS_Store/
