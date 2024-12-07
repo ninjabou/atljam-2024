@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://bev0a30uvpmfc"]
+[gd_scene load_steps=7 format=4 uid="uid://bev0a30uvpmfc"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_b67ly"]
 [ext_resource type="TileSet" uid="uid://cwj58j6fsmdr2" path="res://scenes/levels/tile/new_tile_set.tres" id="1_kmohs"]
 [ext_resource type="PackedScene" uid="uid://dof8y3pxi1lgb" path="res://scenes/kickables/enemies/default_enemy/default_enemy.tscn" id="2_p3j8l"]
 [ext_resource type="PackedScene" uid="uid://dn3i3pnsv8lns" path="res://scenes/player/Player.tscn" id="4_fhujv"]
+[ext_resource type="PackedScene" uid="uid://dhv1mv5jm7fep" path="res://scenes/kickables/goal/goal.tscn" id="5_264sn"]
 
 [sub_resource type="Environment" id="Environment_dmbck"]
 background_mode = 3
@@ -34,3 +35,7 @@ position = Vector2(-182, -210)
 
 [node name="Player" parent="." instance=ExtResource("4_fhujv")]
 position = Vector2(164, -40)
+
+[node name="Goal" parent="." instance=ExtResource("5_264sn")]
+position = Vector2(-424, -316)
+next_level = "Level1"

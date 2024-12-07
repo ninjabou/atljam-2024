@@ -22,10 +22,6 @@ func on_register_scene(scene: Node2D):
 	current_scene = scene
 	current_path = scenes.get("Default")
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		goto_scene("Level1")
-
 # Queues a transition and stores a method to call with the specified parameters
 # on the root node of the next scene once the transition finishes
 func goto_scene_and_call(path, method_name, parameters):
