@@ -8,13 +8,19 @@ var call_queued = false
 var queued_method
 var queued_parameters
 
+var scenes  = {
+	"Default" : "res://scenes/levels/default level/default level.tscn",
+	"Level1" : "res://scenes/levels/level 1/level 1.tscn",
+}
+
+signal register_scene(scene: Node2D)
 
 func _ready():
-	var root = get_tree().get_root()
-	current_scene = root.get_child(root.get_child_count() - 1)
-	
-	current_path = current_scene.scene_file_path
+	self.register_scene.connect(on_register_scene)
 
+func on_register_scene(scene: Node2D):
+	current_scene = scene
+	current_path = scenes.get("Default")
 
 # Queues a transition and stores a method to call with the specified parameters
 # on the root node of the next scene once the transition finishes
@@ -32,7 +38,7 @@ func goto_scene_and_call(path, method_name, parameters):
 # animation that will call finish_transition at the appropriate time
 func goto_scene(path: String) -> void:
 	if not transitioning:
-		current_path = path
+		current_path = scenes.get(path)
 		
 		transitioning = true
 		
