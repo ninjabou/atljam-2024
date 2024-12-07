@@ -4,7 +4,7 @@ extends Camera2D
 signal finish_transition
 
 
-const TRANSITION_TIME = 2.0
+const TRANSITION_TIME = 2.25
 const LERP_WEIGHT = 7
 
 const SHAKE = 0.5
@@ -86,9 +86,10 @@ func snap_to_aim():
 
 func start_transition_animation():
 	var tween = create_tween()
-	tween.tween_method(set_shader_value, 0.0, 1.0, TRANSITION_TIME / 2.0)
+	tween.tween_method(tween_wait, true, true, TRANSITION_TIME / 3.0)
+	tween.tween_method(set_shader_value, 0.0, 1.0, TRANSITION_TIME / 3.0)
 	tween.tween_callback(finish_transition_animation)
-	tween.tween_method(set_shader_value, 1.0, 2.0, TRANSITION_TIME / 2.0)
+	tween.tween_method(set_shader_value, 1.0, 2.0, TRANSITION_TIME / 3.0)
 
 
 func set_shader_value(value: float):
@@ -101,3 +102,6 @@ func finish_transition_animation():
 	snap_to_aim()
 	
 	emit_signal("finish_transition")
+
+func tween_wait(bwuh: bool):
+	pass

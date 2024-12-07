@@ -1,10 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=41 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://cqtwwft1exyw0" path="res://scenes/player/player animations/Croak Idle.png" id="2_mds75"]
 [ext_resource type="Texture2D" uid="uid://ej2xi61w0os8" path="res://scenes/player/player animations/Croak Jump.png" id="2_u3517"]
 [ext_resource type="Texture2D" uid="uid://x5bl0gk0fn5e" path="res://scenes/player/player animations/Croak Fair Spritesheet.png" id="3_q4pja"]
-[ext_resource type="Texture2D" uid="uid://un4pnmnsp17m" path="res://scenes/player/player animations/Croak Hurt.png" id="3_s5s7s"]
 [ext_resource type="Texture2D" uid="uid://d4mebqfav0qyj" path="res://scenes/player/player animations/Croak Walk Spritesheet.png" id="4_2tuip"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_id5qm"]
@@ -98,14 +97,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"airborne",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_s5s7s")
-}],
-"loop": true,
-"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -278,18 +269,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_5f1ld"]
 resource_name = "kick_down"
@@ -374,18 +353,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [2, 3]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02wkl"]
 _data = {
@@ -409,7 +376,8 @@ shape = SubResource("CircleShape2D_id5qm")
 position = Vector2(0, -17)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_p4ahn")
-animation = &"hurt"
+animation = &"airborne"
+flip_h = true
 
 [node name="KickRight" type="Area2D" parent="."]
 collision_layer = 2

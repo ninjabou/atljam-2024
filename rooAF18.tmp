@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g6qdyogwg4xm"]
+
+[ext_resource type="PackedScene" uid="uid://bev0a30uvpmfc" path="res://scenes/levels/default level/default level.tscn" id="3_qog6y"]
+
+[node name="Root2D" type="Node2D"]
+
+[node name="DefaultLevel" parent="." instance=ExtResource("3_qog6y")]
+position = Vector2(561, 605)
