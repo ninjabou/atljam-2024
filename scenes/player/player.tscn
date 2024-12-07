@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=55 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://cqtwwft1exyw0" path="res://scenes/player/player animations/Croak Idle.png" id="2_mds75"]
@@ -62,18 +62,6 @@ region = Rect2(768, 512, 256, 256)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4uia"]
 atlas = ExtResource("3_7f1rb")
 region = Rect2(0, 768, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uo38q"]
-atlas = ExtResource("3_7f1rb")
-region = Rect2(256, 768, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eibho"]
-atlas = ExtResource("3_7f1rb")
-region = Rect2(512, 768, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sfwlt"]
-atlas = ExtResource("3_7f1rb")
-region = Rect2(768, 768, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fb3jf"]
 atlas = ExtResource("3_q4pja")
@@ -200,15 +188,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c4uia")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uo38q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eibho")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sfwlt")
 }],
 "loop": false,
 "name": &"down_kick",
