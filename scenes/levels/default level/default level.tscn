@@ -43,7 +43,6 @@ position = Vector2(-424, -316)
 next_level = "Level1"
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-top_level = true
 z_index = -5
 scroll_scale = Vector2(0.17, 1)
 repeat_size = Vector2(1536, 0)
