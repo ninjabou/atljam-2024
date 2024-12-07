@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dof8y3pxi1lgb"]
+
+[ext_resource type="Script" path="res://scenes/kickables/enemies/default_enemy/default_enemy.gd" id="1_vrmk1"]
+[ext_resource type="Texture2D" uid="uid://dgu8jk35boteg" path="res://icon.svg" id="2_y03vy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a4sv"]
+size = Vector2(64, 64)
+
+[node name="DefaultEnemy" type="AnimatableBody2D"]
+collision_layer = 4
+script = ExtResource("1_vrmk1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.941785, 0, 0.359919, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_y03vy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3a4sv")

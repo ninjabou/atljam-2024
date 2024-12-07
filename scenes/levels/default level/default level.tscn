@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=4 uid="uid://bev0a30uvpmfc"]
+[gd_scene load_steps=4 format=4 uid="uid://bev0a30uvpmfc"]
 
 [ext_resource type="TileSet" uid="uid://cwj58j6fsmdr2" path="res://scenes/levels/tile/new_tile_set.tres" id="1_kmohs"]
+[ext_resource type="PackedScene" uid="uid://dof8y3pxi1lgb" path="res://scenes/kickables/enemies/default_enemy/default_enemy.tscn" id="2_p3j8l"]
 
 [sub_resource type="Environment" id="Environment_dmbck"]
 background_mode = 3
@@ -24,3 +25,6 @@ tile_set = ExtResource("1_kmohs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dmbck")
+
+[node name="DefaultEnemy" parent="." instance=ExtResource("2_p3j8l")]
+position = Vector2(37, -275)

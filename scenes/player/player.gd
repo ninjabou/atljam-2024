@@ -51,26 +51,24 @@ func _process(delta: float) -> void:
 			jump_horizontal_dir = 1.0
 			velocity.x = KICK_SPEED
 			velocity.y = SIDE_KICK_JUMP_VELOCITY
-			animations.stop()
 			kick_left_particles.restart()
-			GlobalCamera.add_trauma(0.15)
-			kicking = Kicks.NONE
+			kicks_reset()
+			kick_enemies(kick_left)
 	if kicking == Kicks.RIGHT:
 		if kick_right.get_overlapping_bodies().size() > 0:
 			jump_horizontal_dir = -1.0
 			velocity.x = -KICK_SPEED
 			velocity.y = SIDE_KICK_JUMP_VELOCITY
-			animations.stop()
 			kick_right_particles.restart()
-			GlobalCamera.add_trauma(0.15)
-			kicking = Kicks.NONE
+			kicks_reset()
+			kick_enemies(kick_right)
 	if kicking == Kicks.DOWN:
 		if kick_down.get_overlapping_bodies().size() > 0:
+			kick_enemies(kick_down)
 			velocity.y = DOWN_KICK_JUMP_VELOCITY
-			animations.stop()
 			kick_down_particles.restart()
-			GlobalCamera.add_trauma(0.15)
-			kicking = Kicks.NONE
+			kicks_reset()
+		
 	
 	if state == States.AIRBORNE:
 		jump_horizontal_dir = move_toward(jump_horizontal_dir, direction, AIRBORNE_ADJUST)
@@ -89,3 +87,13 @@ func _process(delta: float) -> void:
 			velocity.x = direction * AIR_SPEED
 	
 	move_and_slide()
+
+func kicks_reset():
+	animations.stop()
+	GlobalCamera.add_trauma(0.15)
+	kicking = Kicks.NONE
+
+func kick_enemies(area: Area2D):
+	for body in area.get_overlapping_bodies():
+		if body is Kickable:
+			KickablesManager.kick.emit(body)
