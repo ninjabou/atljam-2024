@@ -1,3 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# vivi's idiot mac specific ignores
+.DS_Store/
