@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		state = States.AIRBORNE
-		if !sprite.animation == "side_kick":
+		if !sprite.animation == "side_kick" && !sprite.animation == "down_kick":
 			sprite.play("airborne")
 		velocity += get_gravity() * delta
 	else:
@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 			sprite.play("side_kick")
 		if dir_updown > 0.0:
 			animations.play("kick_down")
+			sprite.play("down_kick")
 	
 	if kicking == Kicks.LEFT:
 		if kick_left.get_overlapping_bodies().size() > 0:
