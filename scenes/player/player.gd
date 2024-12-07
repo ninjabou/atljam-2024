@@ -7,8 +7,8 @@ const FLOOR_SPEED := 170.0
 const AIR_SPEED := 300.0
 const KICK_SPEED := 800.0
 const SIDE_KICK_JUMP_VELOCITY := -270.0
-const DOWN_KICK_JUMP_VELOCITY := -500.0
-const JUMP_VELOCITY := -270.0
+const DOWN_KICK_JUMP_VELOCITY := -520.0
+const JUMP_VELOCITY := -290.0
 const AIRBORNE_ADJUST := 0.03
 
 @export var kicking := Kicks.NONE
@@ -25,7 +25,8 @@ var state = States.IDLE
 var jump_horizontal_dir := 0.0
 
 func _ready() -> void:
-	GlobalCamera.follow_node(self)
+	GlobalCamera.follow_pos(self.global_position)
+	GlobalCamera.snap_to_aim()
 
 func _process(delta: float) -> void:
 	# Add the gravity.
@@ -85,6 +86,8 @@ func _process(delta: float) -> void:
 			jump_horizontal_dir = direction
 			velocity.y = JUMP_VELOCITY
 			velocity.x = direction * AIR_SPEED
+	
+	GlobalCamera.follow_pos(self.global_position)
 	
 	move_and_slide()
 

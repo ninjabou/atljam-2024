@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dgu8jk35boteg" path="res://icon.svg" id="2_y03vy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a4sv"]
-size = Vector2(64, 64)
+size = Vector2(32, 32)
 
 [node name="DefaultEnemy" type="AnimatableBody2D"]
 collision_layer = 4
@@ -12,7 +12,7 @@ script = ExtResource("1_vrmk1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.941785, 0, 0.359919, 1)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_y03vy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
