@@ -114,6 +114,9 @@ func _process(delta: float) -> void:
 		hurt_and_reset(spike_detection.get_overlapping_bodies()[0])
 	
 	move_and_slide()
+	
+	if dead:
+		sprite.play("hurt")
 
 func kicks_reset():
 	#sprite.stop()
