@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=40 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://cqtwwft1exyw0" path="res://scenes/player/player animations/Croak Idle.png" id="2_mds75"]
@@ -417,6 +417,9 @@ _data = {
 "kick_right": SubResource("Animation_8b0ra")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fe7ei"]
+radius = 20.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_35fkw")
@@ -490,3 +493,10 @@ trail_lifetime = 0.1
 libraries = {
 "": SubResource("AnimationLibrary_02wkl")
 }
+
+[node name="SpikeDetection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetection"]
+shape = SubResource("CircleShape2D_fe7ei")

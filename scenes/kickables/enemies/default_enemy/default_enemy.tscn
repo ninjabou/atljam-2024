@@ -7,7 +7,7 @@
 size = Vector2(32, 32)
 
 [node name="DefaultEnemy" type="AnimatableBody2D"]
-collision_layer = 4
+collision_layer = 12
 script = ExtResource("1_vrmk1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

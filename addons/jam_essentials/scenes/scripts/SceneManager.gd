@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene = null
-var current_path = ""
+var current_path = "Default"
 var transitioning = false
 var call_queued = false
 
@@ -20,7 +20,6 @@ func _ready():
 
 func on_register_scene(scene: Node2D):
 	current_scene = scene
-	current_path = scenes.get("Default")
 
 # Queues a transition and stores a method to call with the specified parameters
 # on the root node of the next scene once the transition finishes
@@ -38,14 +37,13 @@ func goto_scene_and_call(path, method_name, parameters):
 # animation that will call finish_transition at the appropriate time
 func goto_scene(path: String) -> void:
 	if not transitioning:
-		current_path = scenes.get(path)
+		current_path = path
 		
 		transitioning = true
 		
 		GlobalCamera.start_transition_animation()
 		await GlobalCamera.finish_transition
 		call_deferred("_finish_transition")
-
 
 # Instantiates the scene specified on the last goto_scene call. If a method has
 # been queued, will call that method on the root not of that new scene
@@ -55,7 +53,7 @@ func _finish_transition():
 		
 		current_scene.free()
 		
-		var s = ResourceLoader.load(current_path)
+		var s = ResourceLoader.load(scenes.get(current_path))
 		current_scene = s.instantiate()
 		
 		if call_queued:

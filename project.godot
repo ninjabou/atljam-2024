@@ -23,6 +23,10 @@ SoundController="*res://addons/jam_essentials/scenes/SoundController.tscn"
 ExpDecay="*res://autoloads/ExpDecay.gd"
 KickablesManager="*res://autoloads/KickablesManager.tscn"
 
+[display]
+
+window/size/resizable=false
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/jam_essentials/plugin.cfg")

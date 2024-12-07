@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 enum States {IDLE, RUNNING, AIRBORNE}
 enum Kicks {LEFT, DOWN, RIGHT, NONE}
@@ -17,6 +18,7 @@ const AIRBORNE_ADJUST := 0.03
 @onready var kick_left: Area2D = $KickLeft
 @onready var kick_right: Area2D = $KickRight
 @onready var kick_down: Area2D = $KickDown
+@onready var spike_detection: Area2D = $SpikeDetection
 @onready var kick_left_particles: GPUParticles2D = $KickLeft/GPUParticles2D
 @onready var kick_right_particles: GPUParticles2D = $KickRight/GPUParticles2D
 @onready var kick_down_particles: GPUParticles2D = $KickDown/GPUParticles2D
@@ -24,10 +26,12 @@ const AIRBORNE_ADJUST := 0.03
 
 var state = States.IDLE
 var jump_horizontal_dir := 0.0
+var dead := false
 
 func _ready() -> void:
 	GlobalCamera.follow_pos(self.global_position)
 	GlobalCamera.snap_to_aim()
+	GlobalCamera.zoom = Vector2(1.2, 1.2)
 
 func _process(delta: float) -> void:
 	# Add the gravity.
@@ -97,9 +101,14 @@ func _process(delta: float) -> void:
 	
 	GlobalCamera.follow_pos(self.global_position)
 	
+	if spike_detection.get_overlapping_bodies().size() > 0 && !dead:
+		hurt_and_reset(spike_detection.get_overlapping_bodies()[0])
+	
 	move_and_slide()
 
 func kicks_reset():
+	sprite.stop()
+	# sprite.play("airborne")
 	animations.stop()
 	GlobalCamera.add_trauma(0.15)
 	kicking = Kicks.NONE
@@ -108,3 +117,9 @@ func kick_enemies(area: Area2D):
 	for body in area.get_overlapping_bodies():
 		if body is Kickable:
 			KickablesManager.kick.emit(body)
+
+func hurt_and_reset(body: Node2D):
+	dead = true
+	var fling_dir: Vector2 = (body.position - self.position).normalized() + Vector2(0.0, 0.2)
+	velocity += fling_dir * DOWN_KICK_JUMP_VELOCITY * 1.15
+	SceneManager.restart()
