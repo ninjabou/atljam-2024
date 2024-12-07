@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=4 uid="uid://bev0a30uvpmfc"]
+[gd_scene load_steps=3 format=4 uid="uid://bev0a30uvpmfc"]
 
 [ext_resource type="TileSet" uid="uid://cwj58j6fsmdr2" path="res://scenes/levels/tile/new_tile_set.tres" id="1_kmohs"]
+
+[sub_resource type="Environment" id="Environment_dmbck"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.42
+glow_strength = 0.58
+glow_bloom = 0.51
+glow_blend_mode = 0
 
 [node name="DefaultLevel" type="Node2D"]
 texture_filter = 1
@@ -12,3 +21,6 @@ tile_set = ExtResource("1_kmohs")
 [node name="KickableTileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAHAPr/AAAAAAMAAAAHAPv/AAAAAAMAAAAHAPz/AAAAAAMAAAAHAP3/AAAAAAMAAAAHAP7/AAAAAAMAAAAHAPn/AAABAAMAAAAHAP//AAACAAMAAAADAPz/AAAAAAQAAAADAPv/AAAAAAQAAAADAPr/AAAAAAQAAAADAPn/AAABAAQAAAADAP3/AAACAAQAAAA=")
 tile_set = ExtResource("1_kmohs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dmbck")
