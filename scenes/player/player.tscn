@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=16 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://dgu8jk35boteg" path="res://icon.svg" id="1_k54mr"]
@@ -8,6 +8,41 @@ radius = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mty7"]
 size = Vector2(40, 30)
+
+[sub_resource type="Curve" id="Curve_80yq4"]
+_data = [Vector2(0, 1), 0.0, -3.68455, 0, 0, Vector2(1, 0), -0.295858, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1wtor"]
+curve = SubResource("Curve_80yq4")
+
+[sub_resource type="Curve" id="Curve_kqrwj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.59932, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mq23o"]
+curve = SubResource("Curve_kqrwj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wu7lj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, -1, 0)
+spread = 97.585
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_mq23o")
+alpha_curve = SubResource("CurveTexture_1wtor")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.07
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu3qb"]
 size = Vector2(30, 40)
@@ -175,6 +210,16 @@ monitoring = false
 position = Vector2(20, 15)
 shape = SubResource("RectangleShape2D_3mty7")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="KickRight"]
+position = Vector2(27, 30)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_wu7lj")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
+
 [node name="KickLeft" type="Area2D" parent="."]
 collision_mask = 4
 monitoring = false
@@ -182,6 +227,16 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickLeft"]
 position = Vector2(-20, 15)
 shape = SubResource("RectangleShape2D_3mty7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="KickLeft"]
+position = Vector2(-28, 30)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_wu7lj")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
 
 [node name="KickDown" type="Area2D" parent="."]
 collision_layer = 2
@@ -191,6 +246,16 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickDown"]
 position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_cu3qb")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="KickDown"]
+position = Vector2(0, 35)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_wu7lj")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="."]
 libraries = {
