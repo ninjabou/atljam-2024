@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=11 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://dgu8jk35boteg" path="res://icon.svg" id="1_k54mr"]
@@ -9,33 +9,8 @@ radius = 20.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mty7"]
 size = Vector2(40, 30)
 
-[sub_resource type="Animation" id="Animation_8b0ra"]
-resource_name = "kick_right"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("KickRight:monitoring")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:kicking")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 3]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu3qb"]
+size = Vector2(30, 40)
 
 [sub_resource type="Animation" id="Animation_wmdhl"]
 length = 0.001
@@ -49,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -74,6 +49,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("KickDown:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_1u2em"]
@@ -104,9 +91,66 @@ tracks/1/keys = {
 "values": [0, 3]
 }
 
+[sub_resource type="Animation" id="Animation_8b0ra"]
+resource_name = "kick_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KickRight:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:kicking")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_5f1ld"]
+resource_name = "kick_down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:kicking")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KickDown:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02wkl"]
 _data = {
 "RESET": SubResource("Animation_wmdhl"),
+"kick_down": SubResource("Animation_5f1ld"),
 "kick_left": SubResource("Animation_1u2em"),
 "kick_right": SubResource("Animation_8b0ra")
 }
@@ -124,6 +168,7 @@ texture = ExtResource("1_k54mr")
 
 [node name="KickRight" type="Area2D" parent="."]
 collision_layer = 2
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickRight"]
 position = Vector2(20, 15)
@@ -135,6 +180,14 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickLeft"]
 position = Vector2(-20, 15)
 shape = SubResource("RectangleShape2D_3mty7")
+
+[node name="KickDown" type="Area2D" parent="."]
+collision_layer = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KickDown"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_cu3qb")
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="."]
 libraries = {
