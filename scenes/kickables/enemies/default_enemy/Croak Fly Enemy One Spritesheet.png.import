@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rwu37akvitki"
-path="res://.godot/imported/Croak Fly Enemy One Spritesheet.png-1457fd42a34bf1ffd835daeff4dd7c40.ctex"
+path="res://.godot/imported/Croak Fly Enemy One Spritesheet.png-275593b81aec0d49bf1a529e378285b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/player animations/Croak Fly Enemy One Spritesheet.png"
-dest_files=["res://.godot/imported/Croak Fly Enemy One Spritesheet.png-1457fd42a34bf1ffd835daeff4dd7c40.ctex"]
+source_file="res://scenes/kickables/enemies/default_enemy/Croak Fly Enemy One Spritesheet.png"
+dest_files=["res://.godot/imported/Croak Fly Enemy One Spritesheet.png-275593b81aec0d49bf1a529e378285b6.ctex"]
 
 [params]
 
