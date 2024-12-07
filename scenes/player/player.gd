@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name PlayerNode
 
 enum States {IDLE, RUNNING, AIRBORNE}
 enum Kicks {LEFT, DOWN, RIGHT, NONE}
@@ -37,18 +37,27 @@ func _process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		state = States.AIRBORNE
+		if !sprite.animation == "side_kick":
+			sprite.play("airborne")
 		velocity += get_gravity() * delta
 	else:
 		state = States.IDLE
 	
 	var direction := Input.get_axis("action_left", "action_right")
 	var dir_updown := Input.get_axis("action_up", "action_down")
+	if dead:
+		direction = 0.0
+		dir_updown = 0.0
 	
 	if Input.is_action_just_pressed("action_jump") && state == States.AIRBORNE && !animations.is_playing():
 		if direction > 0.0 && dir_updown == 0.0:
 			animations.play("kick_right")
+			sprite.flip_h = true
+			sprite.play("side_kick")
 		if direction < 0.0 && dir_updown == 0.0:
 			animations.play("kick_left")
+			sprite.flip_h = false
+			sprite.play("side_kick")
 		if dir_updown > 0.0:
 			animations.play("kick_down")
 	
@@ -107,7 +116,7 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func kicks_reset():
-	sprite.stop()
+	#sprite.stop()
 	# sprite.play("airborne")
 	animations.stop()
 	GlobalCamera.add_trauma(0.15)
