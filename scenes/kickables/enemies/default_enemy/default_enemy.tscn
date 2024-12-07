@@ -1,7 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://dof8y3pxi1lgb"]
+[gd_scene load_steps=7 format=3 uid="uid://dof8y3pxi1lgb"]
 
 [ext_resource type="Script" path="res://scenes/kickables/enemies/default_enemy/default_enemy.gd" id="1_vrmk1"]
-[ext_resource type="Texture2D" uid="uid://dgu8jk35boteg" path="res://icon.svg" id="2_y03vy"]
+[ext_resource type="Texture2D" uid="uid://rwu37akvitki" path="res://scenes/kickables/enemies/default_enemy/Croak Fly Enemy One Spritesheet.png" id="2_a46n6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kyvp"]
+atlas = ExtResource("2_a46n6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrbao"]
+atlas = ExtResource("2_a46n6")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8fn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kyvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrbao")
+}],
+"loop": true,
+"name": &"default",
+"speed": 18.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a4sv"]
 size = Vector2(32, 32)
@@ -10,10 +32,11 @@ size = Vector2(32, 32)
 collision_layer = 12
 script = ExtResource("1_vrmk1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.941785, 0, 0.359919, 1)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_y03vy")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.41, 0.41)
+sprite_frames = SubResource("SpriteFrames_x8fn7")
+autoplay = "default"
+frame_progress = 0.444888
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3a4sv")
