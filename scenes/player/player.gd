@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name PlayerNode
+class_name Player
 
 enum States {IDLE, RUNNING, AIRBORNE}
 enum Kicks {LEFT, DOWN, RIGHT, NONE}
