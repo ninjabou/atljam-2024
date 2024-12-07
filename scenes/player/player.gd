@@ -6,7 +6,8 @@ enum Kicks {LEFT, DOWN, RIGHT, NONE}
 const FLOOR_SPEED := 170.0
 const AIR_SPEED := 300.0
 const KICK_SPEED := 800.0
-const KICK_JUMP_VELOCITY := -200.0
+const SIDE_KICK_JUMP_VELOCITY := -200.0
+const DOWN_KICK_JUMP_VELOCITY := -500.0
 const JUMP_VELOCITY := -270.0
 const AIRBORNE_ADJUST := 0.03
 
@@ -15,6 +16,7 @@ const AIRBORNE_ADJUST := 0.03
 @onready var animations: AnimationPlayer = $PlayerAnimations
 @onready var kick_left: Area2D = $KickLeft
 @onready var kick_right: Area2D = $KickRight
+@onready var kick_down: Area2D = $KickDown
 
 var state = States.IDLE
 var jump_horizontal_dir := 0.0
@@ -28,24 +30,31 @@ func _physics_process(delta: float) -> void:
 		state = States.IDLE
 	
 	var direction := Input.get_axis("action_left", "action_right")
+	var dir_updown := Input.get_axis("action_up", "action_down")
 	
 	if Input.is_action_just_pressed("action_jump") && state == States.AIRBORNE && !animations.is_playing():
-		if direction > 0.0:
+		if direction > 0.0 && dir_updown == 0.0:
 			animations.play("kick_right")
-		if direction < 0.0:
+		if direction < 0.0 && dir_updown == 0.0:
 			animations.play("kick_left")
-	print(kicking)
+		if dir_updown > 0.0:
+			animations.play("kick_down")
+	
 	if kicking == Kicks.LEFT:
 		if kick_left.get_overlapping_bodies().size() > 0:
 			jump_horizontal_dir = 1.0
 			velocity.x = KICK_SPEED
-			velocity.y = KICK_JUMP_VELOCITY
+			velocity.y = SIDE_KICK_JUMP_VELOCITY
 			kicking = Kicks.NONE
 	if kicking == Kicks.RIGHT:
 		if kick_right.get_overlapping_bodies().size() > 0:
 			jump_horizontal_dir = -1.0
 			velocity.x = -KICK_SPEED
-			velocity.y = KICK_JUMP_VELOCITY
+			velocity.y = SIDE_KICK_JUMP_VELOCITY
+			kicking = Kicks.NONE
+	if kicking == Kicks.DOWN:
+		if kick_down.get_overlapping_bodies().size() > 0:
+			velocity.y = DOWN_KICK_JUMP_VELOCITY
 			kicking = Kicks.NONE
 	
 	if state == States.AIRBORNE:
