@@ -14,9 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://bwnyfjiaou4k5" path="res://scenes/player/sfx/die quick.wav" id="12_8ea7y"]
 [ext_resource type="AudioStream" uid="uid://dsiu0p4qare" path="res://scenes/player/sfx/throw out kick.wav" id="13_rrpnc"]
 [ext_resource type="AudioStream" uid="uid://cir2oxinp705l" path="res://scenes/player/sfx/wall connect.wav" id="14_7qjii"]
-[ext_resource type="AudioStream" uid="uid://k1r4wqutx3bo" path="res://scenes/levels/music/base level funk fixed.wav" id="15_sinag"]
-[ext_resource type="AudioStream" uid="uid://cf4b7mkn86pny" path="res://scenes/levels/music/run.wav" id="16_hsjim"]
-[ext_resource type="AudioStream" uid="uid://bav8d0njbrapt" path="res://scenes/levels/music/end sting.wav" id="17_it4kr"]
+[ext_resource type="AudioStream" uid="uid://ctrl2h3pvdpxc" path="res://scenes/levels/music/base level funk fixed.ogg" id="15_3e32x"]
+[ext_resource type="AudioStream" uid="uid://cwy6ed0fy8ldv" path="res://scenes/levels/music/run.ogg" id="16_6feme"]
+[ext_resource type="AudioStream" uid="uid://cmyg1cenfhb1" path="res://scenes/levels/music/end sting.ogg" id="17_fjjek"]
 
 [node name="SoundController" type="Node"]
 script = ExtResource("1_xbq3f")
@@ -65,13 +65,13 @@ stream = ExtResource("14_7qjii")
 [node name="Music" type="Node" parent="."]
 
 [node name="DefaultLevel" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource("15_sinag")
+stream = ExtResource("15_3e32x")
 bus = &"Music"
 
 [node name="RegularLevels" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource("16_hsjim")
+stream = ExtResource("16_6feme")
 bus = &"Music"
 
 [node name="Ending" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource("17_it4kr")
+stream = ExtResource("17_fjjek")
 bus = &"Music"
