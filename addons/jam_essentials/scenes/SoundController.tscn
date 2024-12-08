@@ -1,10 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqkx1bmvj3rym"]
+[gd_scene load_steps=15 format=3 uid="uid://bqkx1bmvj3rym"]
 
 [ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/SoundController.gd" id="1_xbq3f"]
+[ext_resource type="AudioStream" uid="uid://dsr2qkkvif04l" path="res://scenes/player/sfx/button quick.wav" id="2_40yoa"]
+[ext_resource type="AudioStream" uid="uid://cje85b0ouhic5" path="res://scenes/player/sfx/confetti.wav" id="3_ef7cv"]
+[ext_resource type="AudioStream" uid="uid://cktl1se2w1o5x" path="res://scenes/player/sfx/enemy connect quick.wav" id="4_pqogm"]
+[ext_resource type="AudioStream" uid="uid://cvb8fgmnuqoeo" path="res://scenes/player/sfx/jump.wav" id="5_mcaes"]
+[ext_resource type="AudioStream" uid="uid://bg400l8x4qg6r" path="res://scenes/player/sfx/land on ground.wav" id="6_kvcag"]
+[ext_resource type="AudioStream" uid="uid://b6io4gqj2qdwj" path="res://scenes/player/sfx/level reset.wav" id="7_jdms3"]
+[ext_resource type="AudioStream" uid="uid://ccxnvpemxo74p" path="res://scenes/player/sfx/menu button press.wav" id="8_83r17"]
+[ext_resource type="AudioStream" uid="uid://cmp6ucfudylor" path="res://scenes/player/sfx/menu mouse over.wav" id="9_b12v7"]
+[ext_resource type="AudioStream" uid="uid://c2miq0d574dca" path="res://scenes/player/sfx/menu open.wav" id="10_4mh6i"]
+[ext_resource type="AudioStream" uid="uid://daqcpejjx3qc5" path="res://scenes/player/sfx/placeholder.mp3" id="11_lb7o4"]
+[ext_resource type="AudioStream" uid="uid://bwnyfjiaou4k5" path="res://scenes/player/sfx/die quick.wav" id="12_8ea7y"]
+[ext_resource type="AudioStream" uid="uid://dsiu0p4qare" path="res://scenes/player/sfx/throw out kick.wav" id="13_rrpnc"]
+[ext_resource type="AudioStream" uid="uid://cir2oxinp705l" path="res://scenes/player/sfx/wall connect.wav" id="14_7qjii"]
 
 [node name="SoundController" type="Node"]
 script = ExtResource("1_xbq3f")
 
 [node name="SFX" type="Node" parent="."]
+
+[node name="BigButton" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_40yoa")
+
+[node name="Confetti" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_ef7cv")
+
+[node name="EnemyConnect" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_pqogm")
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_mcaes")
+
+[node name="LandOnGround" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_kvcag")
+
+[node name="LevelReset" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_jdms3")
+
+[node name="MenuButtonPress" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_83r17")
+
+[node name="MenuMouseOver" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("9_b12v7")
+
+[node name="MenuOpen" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_4mh6i")
+
+[node name="Placeholder" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_lb7o4")
+
+[node name="PlayerDie" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("12_8ea7y")
+
+[node name="ThrowOutKick" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("13_rrpnc")
+
+[node name="WallConnect" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_7qjii")
 
 [node name="Music" type="Node" parent="."]
