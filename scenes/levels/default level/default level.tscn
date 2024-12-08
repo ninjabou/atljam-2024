@@ -57,6 +57,7 @@ scroll_scale = Vector2(0.17, 1)
 repeat_size = Vector2(1536, 0)
 autoscroll = Vector2(12, 0)
 repeat_times = 3
+limit_begin = Vector2(-1e+07, -500)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 modulate = Color(0.57, 0.57, 0.57, 0.666667)
@@ -183,6 +184,15 @@ offset_right = 979.0
 offset_bottom = -586.0
 theme = SubResource("Theme_pjgu2")
 text = "the level ends when you kick one of these."
+
+[node name="RichTextLabel12" type="RichTextLabel" parent="Text"]
+layout_mode = 0
+offset_left = 863.0
+offset_top = -913.0
+offset_right = 1114.0
+offset_bottom = -814.0
+theme = SubResource("Theme_pjgu2")
+text = "you can restart a level by pressing R."
 
 [node name="RichTextLabel10" type="RichTextLabel" parent="Text"]
 layout_mode = 0

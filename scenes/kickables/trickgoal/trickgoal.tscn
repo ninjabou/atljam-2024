@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://xupuji12780t"]
+
+[ext_resource type="Script" path="res://scenes/kickables/trickgoal/trickgoal.gd" id="1_g0f67"]
+[ext_resource type="Material" uid="uid://cewkp83l5oh4m" path="res://scenes/unshaded.tres" id="2_vfyq7"]
+[ext_resource type="Texture2D" uid="uid://dwj4p3exduaft" path="res://scenes/kickables/goal/Sprite-0003.png" id="3_hvqkm"]
+[ext_resource type="Texture2D" uid="uid://k0143otu2egp" path="res://scenes/kickables/goal/Sprite-0002.png" id="4_hyibp"]
+
+[sub_resource type="Curve" id="Curve_di3bx"]
+_data = [Vector2(0, 1), 0.0, -2.64914, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_aykjy"]
+curve = SubResource("Curve_di3bx")
+
+[sub_resource type="Gradient" id="Gradient_y1qht"]
+offsets = PackedFloat32Array(0, 0.188525, 0.377049, 0.57377, 0.795082, 1)
+colors = PackedColorArray(0.903724, 0.0145417, 3.85046e-07, 1, 0.762362, 0.311822, 9.62615e-08, 1, 0.73, 0.705667, 0, 1, 1.54018e-06, 0.703587, 0.386188, 1, 8.18223e-06, 0.717637, 0.806588, 1, 0.836742, 0.0020161, 0.99632, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_16hfr"]
+gradient = SubResource("Gradient_y1qht")
+
+[sub_resource type="Curve" id="Curve_en7wj"]
+_data = [Vector2(0, 1), 0.0, -2.89883, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rbmp1"]
+curve = SubResource("Curve_en7wj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8pvpb"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+gravity = Vector3(0, 500, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_rbmp1")
+color_initial_ramp = SubResource("GradientTexture1D_16hfr")
+alpha_curve = SubResource("CurveTexture_aykjy")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.25
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3yklo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hvqkm")
+}],
+"loop": true,
+"name": &"kicked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hyibp")
+}],
+"loop": true,
+"name": &"unkicked",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnew3"]
+size = Vector2(40, 40)
+
+[node name="TrickGoal" type="AnimatableBody2D"]
+collision_layer = 4
+script = ExtResource("1_g0f67")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_8pvpb")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.09
+trail_enabled = true
+trail_lifetime = 0.1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 4
+material = ExtResource("2_vfyq7")
+sprite_frames = SubResource("SpriteFrames_3yklo")
+animation = &"unkicked"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tnew3")
