@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=56 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://cqtwwft1exyw0" path="res://scenes/player/player animations/Croak Idle.png" id="2_mds75"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_id5qm"]
 radius = 20.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c6cr5"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_051j6"]
 atlas = ExtResource("3_7f1rb")
@@ -278,7 +281,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mty7"]
-size = Vector2(40, 30)
+size = Vector2(50, 30)
 
 [sub_resource type="Curve" id="Curve_80yq4"]
 _data = [Vector2(0, 1), 0.0, -3.68455, 0, 0, Vector2(1, 0), -0.295858, 0.0, 0, 0]
@@ -496,6 +499,7 @@ script = ExtResource("1_35fkw")
 shape = SubResource("CircleShape2D_id5qm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_c6cr5")
 position = Vector2(0, -17)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_p4ahn")
@@ -507,7 +511,7 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickRight"]
-position = Vector2(20, 15)
+position = Vector2(25, 15)
 shape = SubResource("RectangleShape2D_3mty7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="KickRight"]
@@ -525,7 +529,7 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickLeft"]
-position = Vector2(-20, 15)
+position = Vector2(-25, 15)
 shape = SubResource("RectangleShape2D_3mty7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="KickLeft"]
