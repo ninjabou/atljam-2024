@@ -1,18 +1,42 @@
 [gd_scene load_steps=3 format=3 uid="uid://be5yvowhdmhsr"]
 
-[ext_resource type="PackedScene" uid="uid://bxdxg6jh3h4mv" path="res://addons/jam_essentials/scenes/SceneManager.tscn" id="1_hngnq"]
-[ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/MainMenuController.gd" id="2_doqwh"]
+[ext_resource type="Script" path="res://scenes/levels/main menu/MainMenu.gd" id="1_337f1"]
+[ext_resource type="Theme" uid="uid://dmugtb10mnr6v" path="res://autoloads/ui/UI.tres" id="2_1mbtb"]
 
 [node name="Mainmenu" type="Node2D"]
+script = ExtResource("1_337f1")
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Control" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MainMenuController" parent="Node" instance=ExtResource("1_hngnq")]
-script = ExtResource("2_doqwh")
+[node name="CenterContainer" type="CenterContainer" parent="Node"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Node"]
-offset_left = 496.0
-offset_top = 423.0
-offset_right = 1174.0
-offset_bottom = 620.0
-text = "Now wait just one darn second there"
+[node name="VBoxContainer" type="VBoxContainer" parent="Node/CenterContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Node/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 86.7)
+layout_mode = 2
+theme = ExtResource("2_1mbtb")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]press Z to start.
+
+press Esc to quit.[/center]"
