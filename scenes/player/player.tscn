@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://cqtwwft1exyw0" path="res://scenes/player/player animations/Croak Idle.png" id="2_mds75"]
 [ext_resource type="Texture2D" uid="uid://ej2xi61w0os8" path="res://scenes/player/player animations/Croak Jump.png" id="2_u3517"]
+[ext_resource type="Material" uid="uid://cewkp83l5oh4m" path="res://scenes/unshaded.tres" id="2_wr8as"]
 [ext_resource type="Texture2D" uid="uid://dua6y4hks7lfv" path="res://scenes/player/player animations/Croak Dair Spritesheet.png" id="3_7f1rb"]
 [ext_resource type="Texture2D" uid="uid://x5bl0gk0fn5e" path="res://scenes/player/player animations/Croak Fair Spritesheet.png" id="3_q4pja"]
 [ext_resource type="Texture2D" uid="uid://un4pnmnsp17m" path="res://scenes/player/player animations/Croak Hurt.png" id="3_s5s7s"]
@@ -10,9 +11,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_id5qm"]
 radius = 20.0
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c6cr5"]
-light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_051j6"]
 atlas = ExtResource("3_7f1rb")
@@ -488,8 +486,9 @@ _data = {
 "kick_right": SubResource("Animation_8b0ra")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fe7ei"]
-radius = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ni8oi"]
+radius = 12.0
+height = 42.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -499,11 +498,11 @@ script = ExtResource("1_35fkw")
 shape = SubResource("CircleShape2D_id5qm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_c6cr5")
+material = ExtResource("2_wr8as")
 position = Vector2(0, -17)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_p4ahn")
-animation = &"down_kick"
+animation = &"idle"
 
 [node name="KickRight" type="Area2D" parent="."]
 collision_layer = 2
@@ -571,4 +570,5 @@ collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetection"]
-shape = SubResource("CircleShape2D_fe7ei")
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_ni8oi")

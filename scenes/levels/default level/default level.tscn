@@ -67,6 +67,7 @@ texture = ExtResource("6_ars8k")
 modulate = Color(1, 1, 1, 0.329412)
 z_index = -4
 scroll_scale = Vector2(0.25, 1)
+scroll_offset = Vector2(10, 108)
 repeat_size = Vector2(1280, 0)
 repeat_times = 46
 
