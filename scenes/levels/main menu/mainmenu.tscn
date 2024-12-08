@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://be5yvowhdmhsr"]
+[gd_scene load_steps=7 format=3 uid="uid://be5yvowhdmhsr"]
 
 [ext_resource type="Script" path="res://scenes/levels/main menu/MainMenu.gd" id="1_337f1"]
 [ext_resource type="Theme" uid="uid://dmugtb10mnr6v" path="res://autoloads/ui/UI.tres" id="2_1mbtb"]
+[ext_resource type="Texture2D" uid="uid://yuubtui1pkj3" path="res://scenes/levels/background/sky1.png" id="2_8t3k0"]
+[ext_resource type="Texture2D" uid="uid://cjaypjey22xfd" path="res://scenes/levels/main menu/g27.png" id="2_te2i4"]
+[ext_resource type="Texture2D" uid="uid://d3nwr4ucx7jd5" path="res://scenes/levels/background/buildings1.1.png" id="3_21lmu"]
+
+[sub_resource type="Theme" id="Theme_2bnao"]
+MarginContainer/constants/margin_bottom = 50
 
 [node name="Mainmenu" type="Node2D"]
 script = ExtResource("1_337f1")
@@ -17,6 +23,41 @@ offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="Node"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.232661, 0.137786, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="Node"]
+scroll_scale = Vector2(0.17, 1)
+scroll_offset = Vector2(-1044, 539)
+repeat_size = Vector2(1536, 0)
+autoscroll = Vector2(12, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/Parallax2D"]
+modulate = Color(0.57, 0.57, 0.57, 0.666667)
+position = Vector2(-2, -189)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_8t3k0")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node"]
+modulate = Color(0.270222, 0.270222, 0.270222, 1)
+scroll_scale = Vector2(0.25, 1)
+scroll_offset = Vector2(-1279, 775)
+repeat_size = Vector2(1280, 0)
+repeat_times = 46
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/Parallax2D2"]
+modulate = Color(1, 1, 1, 0.94902)
+position = Vector2(0, -381)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_21lmu")
+
 [node name="CenterContainer" type="CenterContainer" parent="Node"]
 layout_mode = 1
 anchors_preset = 15
@@ -26,10 +67,20 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Node/CenterContainer"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="Logo" type="TextureRect" parent="Node/CenterContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Node/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 70
+
+[node name="Logo" type="TextureRect" parent="Node/CenterContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(102.37, 217.725)
+layout_mode = 2
+theme = SubResource("Theme_2bnao")
+texture = ExtResource("2_te2i4")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Node/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 86.7)
