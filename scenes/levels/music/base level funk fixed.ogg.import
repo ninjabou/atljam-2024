@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ctrl2h3pvdpxc"
+path="res://.godot/imported/base level funk fixed.ogg-de6108b60ee3fdcc1dbfd9304cb0587e.oggvorbisstr"
+
+[deps]
+
+source_file="res://scenes/levels/music/base level funk fixed.ogg"
+dest_files=["res://.godot/imported/base level funk fixed.ogg-de6108b60ee3fdcc1dbfd9304cb0587e.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
