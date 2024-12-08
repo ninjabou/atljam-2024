@@ -10,6 +10,8 @@ const SIDE_KICK_JUMP_VELOCITY := -270.0
 const DOWN_KICK_JUMP_VELOCITY := -520.0
 const JUMP_VELOCITY := -290.0
 const AIRBORNE_ADJUST := 30.0
+const SIDE_KICK_HORI_VELOCITY := 769.0
+const AIR_DRIFT_HORI_VELOCITY := 1000.0
 
 @export var kicking := Kicks.NONE
 
@@ -26,11 +28,14 @@ const AIRBORNE_ADJUST := 30.0
 var state = States.IDLE
 var jump_horizontal_dir := 0.0
 var dead := false
+var air_hori_velocity := AIR_DRIFT_HORI_VELOCITY
 
 func _ready() -> void:
 	GlobalCamera.follow_pos(self.global_position)
 	GlobalCamera.snap_to_aim()
 	GlobalCamera.zoom = Vector2(1.2, 1.2)
+	PlayerKiller.player_kill.connect(on_player_kill)
+	PlayerKiller.register_player.emit(self)
 
 func _process(delta: float) -> void:
 	if spike_detection.get_overlapping_bodies().size() > 0 && !dead:
@@ -72,6 +77,7 @@ func _process(delta: float) -> void:
 			jump_horizontal_dir = 1.0
 			velocity.x = KICK_SPEED
 			velocity.y = SIDE_KICK_JUMP_VELOCITY
+			air_hori_velocity = SIDE_KICK_HORI_VELOCITY
 			kick_left_particles.restart()
 			kicks_reset()
 			kick_enemies(kick_left)
@@ -80,6 +86,7 @@ func _process(delta: float) -> void:
 			jump_horizontal_dir = -1.0
 			velocity.x = -KICK_SPEED
 			velocity.y = SIDE_KICK_JUMP_VELOCITY
+			air_hori_velocity = SIDE_KICK_HORI_VELOCITY
 			kick_right_particles.restart()
 			kicks_reset()
 			kick_enemies(kick_right)
@@ -92,9 +99,17 @@ func _process(delta: float) -> void:
 		
 	
 	if state == States.AIRBORNE:
-		jump_horizontal_dir = move_toward(jump_horizontal_dir, direction, (AIRBORNE_ADJUST * delta) / 3.0)
-		velocity.x = move_toward(velocity.x, jump_horizontal_dir * AIR_SPEED, 769.0 * delta)
+		jump_horizontal_dir = move_toward(jump_horizontal_dir, direction, \
+				(AIRBORNE_ADJUST * delta) / (AIRBORNE_ADJUST / 10.0))
+		
+		air_hori_velocity = move_toward(air_hori_velocity, AIR_DRIFT_HORI_VELOCITY, 400.0 * delta)
+		print(air_hori_velocity)
+		
+		velocity.x = move_toward(velocity.x, jump_horizontal_dir * AIR_SPEED, \
+				air_hori_velocity * delta)
 	else:
+		air_hori_velocity = AIR_DRIFT_HORI_VELOCITY
+		
 		if direction:
 			state = States.RUNNING
 			velocity.x = direction * FLOOR_SPEED
@@ -146,3 +161,6 @@ func hitstop(temp_time_scale, duration):
 	Engine.time_scale = temp_time_scale
 	await get_tree().create_timer(duration * temp_time_scale).timeout
 	Engine.time_scale = 1.0
+
+func on_player_kill():
+	dead = true
