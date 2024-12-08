@@ -15,7 +15,7 @@ var scenes  = {
 	"Level2" : "res://scenes/levels/level2/level2.tscn",
 	"Level3" : "res://scenes/levels/level3/level3.tscn",
 	"Level4" : "res://scenes/levels/level4/level4.tscn",
-	"Level5" : "res://scenes/levels/level4/level5.tscn",
+	"Level5" : "res://scenes/levels/level5/level5.tscn",
 	"Congrats" : "res://scenes/levels/congrats/congrats.tscn",
 }
 
