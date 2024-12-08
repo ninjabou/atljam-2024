@@ -33,6 +33,9 @@ func _ready() -> void:
 	GlobalCamera.zoom = Vector2(1.2, 1.2)
 
 func _process(delta: float) -> void:
+	if spike_detection.get_overlapping_bodies().size() > 0 && !dead:
+		hurt_and_reset(spike_detection.get_overlapping_bodies()[0])
+	
 	# Add the gravity.
 	if not is_on_floor():
 		state = States.AIRBORNE
@@ -112,9 +115,6 @@ func _process(delta: float) -> void:
 			velocity.x = direction * AIR_SPEED
 	
 	GlobalCamera.follow_pos(self.global_position)
-	
-	if spike_detection.get_overlapping_bodies().size() > 0 && !dead:
-		hurt_and_reset(spike_detection.get_overlapping_bodies()[0])
 	
 	move_and_slide()
 	

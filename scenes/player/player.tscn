@@ -1,8 +1,9 @@
-[gd_scene load_steps=55 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=56 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://cqtwwft1exyw0" path="res://scenes/player/player animations/Croak Idle.png" id="2_mds75"]
 [ext_resource type="Texture2D" uid="uid://ej2xi61w0os8" path="res://scenes/player/player animations/Croak Jump.png" id="2_u3517"]
+[ext_resource type="Material" uid="uid://cewkp83l5oh4m" path="res://scenes/unshaded.tres" id="2_wr8as"]
 [ext_resource type="Texture2D" uid="uid://dua6y4hks7lfv" path="res://scenes/player/player animations/Croak Dair Spritesheet.png" id="3_7f1rb"]
 [ext_resource type="Texture2D" uid="uid://x5bl0gk0fn5e" path="res://scenes/player/player animations/Croak Fair Spritesheet.png" id="3_q4pja"]
 [ext_resource type="Texture2D" uid="uid://un4pnmnsp17m" path="res://scenes/player/player animations/Croak Hurt.png" id="3_s5s7s"]
@@ -278,7 +279,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mty7"]
-size = Vector2(40, 30)
+size = Vector2(50, 30)
 
 [sub_resource type="Curve" id="Curve_80yq4"]
 _data = [Vector2(0, 1), 0.0, -3.68455, 0, 0, Vector2(1, 0), -0.295858, 0.0, 0, 0]
@@ -485,8 +486,9 @@ _data = {
 "kick_right": SubResource("Animation_8b0ra")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fe7ei"]
-radius = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ni8oi"]
+radius = 12.0
+height = 42.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -496,10 +498,11 @@ script = ExtResource("1_35fkw")
 shape = SubResource("CircleShape2D_id5qm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_wr8as")
 position = Vector2(0, -17)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_p4ahn")
-animation = &"down_kick"
+animation = &"idle"
 
 [node name="KickRight" type="Area2D" parent="."]
 collision_layer = 2
@@ -507,7 +510,7 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickRight"]
-position = Vector2(20, 15)
+position = Vector2(25, 15)
 shape = SubResource("RectangleShape2D_3mty7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="KickRight"]
@@ -525,7 +528,7 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KickLeft"]
-position = Vector2(-20, 15)
+position = Vector2(-25, 15)
 shape = SubResource("RectangleShape2D_3mty7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="KickLeft"]
@@ -567,4 +570,5 @@ collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetection"]
-shape = SubResource("CircleShape2D_fe7ei")
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_ni8oi")

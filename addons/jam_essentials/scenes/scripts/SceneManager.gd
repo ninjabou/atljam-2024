@@ -10,7 +10,8 @@ var queued_parameters
 
 var scenes  = {
 	"Default" : "res://scenes/levels/default level/default level.tscn",
-	"Level1" : "res://scenes/levels/level 1/level 1.tscn",
+	"Level1" : "res://scenes/levels/level1/level1.tscn",
+	"Level2" : "res://scenes/levels/level2/level2.tscn"
 }
 
 signal register_scene(scene: Node2D)
