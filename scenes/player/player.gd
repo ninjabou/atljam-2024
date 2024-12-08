@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name Player
 
 enum States {IDLE, RUNNING, AIRBORNE}
 enum Kicks {LEFT, DOWN, RIGHT, NONE}
@@ -39,6 +38,8 @@ func _process(delta: float) -> void:
 		state = States.AIRBORNE
 		if !sprite.animation == "side_kick" && !sprite.animation == "down_kick":
 			sprite.play("airborne")
+		if !sprite.is_playing() && sprite.animation == "down_kick":
+			sprite.play("airborne")
 		velocity += get_gravity() * delta
 	else:
 		state = States.IDLE
@@ -60,6 +61,7 @@ func _process(delta: float) -> void:
 			sprite.play("side_kick")
 		if dir_updown > 0.0:
 			animations.play("kick_down")
+			sprite.stop()
 			sprite.play("down_kick")
 	
 	if kicking == Kicks.LEFT:
@@ -123,16 +125,24 @@ func kicks_reset():
 	#sprite.stop()
 	# sprite.play("airborne")
 	animations.stop()
-	GlobalCamera.add_trauma(0.15)
+	GlobalCamera.add_trauma(0.2)
 	kicking = Kicks.NONE
 
 func kick_enemies(area: Area2D):
 	for body in area.get_overlapping_bodies():
 		if body is Kickable:
+			hitstop(0.05, 0.4)
 			KickablesManager.kick.emit(body)
 
 func hurt_and_reset(body: Node2D):
 	dead = true
+	hitstop(0.05, 0.6)
+	GlobalCamera.add_trauma(0.2)
 	var fling_dir: Vector2 = (body.position - self.position).normalized() + Vector2(0.0, 0.2)
-	velocity += fling_dir * DOWN_KICK_JUMP_VELOCITY * 1.15
+	velocity = fling_dir * DOWN_KICK_JUMP_VELOCITY
 	SceneManager.restart()
+
+func hitstop(temp_time_scale, duration):
+	Engine.time_scale = temp_time_scale
+	await get_tree().create_timer(duration * temp_time_scale).timeout
+	Engine.time_scale = 1.0
