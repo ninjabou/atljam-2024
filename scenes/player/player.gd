@@ -9,7 +9,7 @@ const KICK_SPEED := 800.0
 const SIDE_KICK_JUMP_VELOCITY := -270.0
 const DOWN_KICK_JUMP_VELOCITY := -520.0
 const JUMP_VELOCITY := -290.0
-const AIRBORNE_ADJUST := 0.03
+const AIRBORNE_ADJUST := 30.0
 
 @export var kicking := Kicks.NONE
 
@@ -92,8 +92,8 @@ func _process(delta: float) -> void:
 		
 	
 	if state == States.AIRBORNE:
-		jump_horizontal_dir = move_toward(jump_horizontal_dir, direction, AIRBORNE_ADJUST)
-		velocity.x = move_toward(velocity.x, jump_horizontal_dir * AIR_SPEED, 10)
+		jump_horizontal_dir = move_toward(jump_horizontal_dir, direction, (AIRBORNE_ADJUST * delta) / 3.0)
+		velocity.x = move_toward(velocity.x, jump_horizontal_dir * AIR_SPEED, 769.0 * delta)
 	else:
 		if direction:
 			state = States.RUNNING
@@ -107,7 +107,7 @@ func _process(delta: float) -> void:
 		else:
 			state = States.IDLE
 			sprite.play("idle")
-			velocity.x = move_toward(velocity.x, 0, FLOOR_SPEED)
+			velocity.x = 0.0
 		
 		if Input.is_action_just_pressed("action_jump") and is_on_floor():
 			jump_horizontal_dir = direction
