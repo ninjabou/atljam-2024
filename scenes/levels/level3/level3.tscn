@@ -41,6 +41,7 @@ position = Vector2(374, -135)
 
 [node name="Goal" parent="." instance=ExtResource("4_dgb7f")]
 position = Vector2(772, -90)
+next_level = "Level5"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x8sxw")
