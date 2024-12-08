@@ -1,9 +1,9 @@
-[gd_scene load_steps=56 format=3 uid="uid://dn3i3pnsv8lns"]
+[gd_scene load_steps=53 format=3 uid="uid://dn3i3pnsv8lns"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_35fkw"]
 [ext_resource type="Texture2D" uid="uid://cqtwwft1exyw0" path="res://scenes/player/player animations/Croak Idle.png" id="2_mds75"]
 [ext_resource type="Texture2D" uid="uid://ej2xi61w0os8" path="res://scenes/player/player animations/Croak Jump.png" id="2_u3517"]
-[ext_resource type="Material" uid="uid://cewkp83l5oh4m" path="res://scenes/unshaded.tres" id="2_wr8as"]
+[ext_resource type="Material" path="res://scenes/unshaded.tres" id="2_wr8as"]
 [ext_resource type="Texture2D" uid="uid://dua6y4hks7lfv" path="res://scenes/player/player animations/Croak Dair Spritesheet.png" id="3_7f1rb"]
 [ext_resource type="Texture2D" uid="uid://x5bl0gk0fn5e" path="res://scenes/player/player animations/Croak Fair Spritesheet.png" id="3_q4pja"]
 [ext_resource type="Texture2D" uid="uid://un4pnmnsp17m" path="res://scenes/player/player animations/Croak Hurt.png" id="3_s5s7s"]
@@ -11,10 +11,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_id5qm"]
 radius = 20.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_051j6"]
-atlas = ExtResource("3_7f1rb")
-region = Rect2(0, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ps5c5"]
 atlas = ExtResource("3_7f1rb")
@@ -55,14 +51,6 @@ region = Rect2(256, 512, 256, 256)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ss5f"]
 atlas = ExtResource("3_7f1rb")
 region = Rect2(512, 512, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oqqwr"]
-atlas = ExtResource("3_7f1rb")
-region = Rect2(768, 512, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c4uia"]
-atlas = ExtResource("3_7f1rb")
-region = Rect2(0, 768, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fb3jf"]
 atlas = ExtResource("3_q4pja")
@@ -152,9 +140,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_051j6")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ps5c5")
 }, {
 "duration": 1.0,
@@ -183,16 +168,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ss5f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oqqwr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c4uia")
 }],
 "loop": false,
 "name": &"down_kick",
-"speed": 18.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -502,7 +481,7 @@ material = ExtResource("2_wr8as")
 position = Vector2(0, -17)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_p4ahn")
-animation = &"idle"
+animation = &"down_kick"
 
 [node name="KickRight" type="Area2D" parent="."]
 collision_layer = 2
