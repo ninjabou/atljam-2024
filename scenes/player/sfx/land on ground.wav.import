@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bg400l8x4qg6r"
+path="res://.godot/imported/land on ground.wav-76a111c9bc1940d9b2f685a477b007bc.sample"
+
+[deps]
+
+source_file="res://scenes/player/sfx/land on ground.wav"
+dest_files=["res://.godot/imported/land on ground.wav-76a111c9bc1940d9b2f685a477b007bc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

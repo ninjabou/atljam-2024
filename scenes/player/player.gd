@@ -29,6 +29,7 @@ var state = States.IDLE
 var jump_horizontal_dir := 0.0
 var dead := false
 var air_hori_velocity := AIR_DRIFT_HORI_VELOCITY
+var was_airborne := false
 
 func _ready() -> void:
 	GlobalCamera.follow_pos(self.global_position)
@@ -44,6 +45,7 @@ func _process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		state = States.AIRBORNE
+		was_airborne = true
 		if !sprite.animation == "side_kick" && !sprite.animation == "down_kick":
 			sprite.play("airborne")
 		if !sprite.is_playing() && sprite.animation == "down_kick":
@@ -59,6 +61,7 @@ func _process(delta: float) -> void:
 		dir_updown = 0.0
 	
 	if Input.is_action_just_pressed("action_jump") && state == States.AIRBORNE && !animations.is_playing():
+		SoundController.play_sfx("ThrowOutKick")
 		if direction > 0.0 && dir_updown == 0.0:
 			animations.play("kick_right")
 			sprite.flip_h = true
@@ -107,6 +110,9 @@ func _process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, jump_horizontal_dir * AIR_SPEED, \
 				air_hori_velocity * delta)
 	else:
+		if was_airborne:
+			SoundController.play_sfx("LandOnGround")
+			was_airborne = false
 		air_hori_velocity = AIR_DRIFT_HORI_VELOCITY
 		
 		if direction:
@@ -124,6 +130,7 @@ func _process(delta: float) -> void:
 			velocity.x = 0.0
 		
 		if Input.is_action_just_pressed("action_jump") and is_on_floor():
+			SoundController.play_sfx("Jump")
 			jump_horizontal_dir = direction
 			velocity.y = JUMP_VELOCITY
 			velocity.x = direction * AIR_SPEED
@@ -141,6 +148,7 @@ func kicks_reset():
 	animations.stop()
 	GlobalCamera.add_trauma(0.2)
 	kicking = Kicks.NONE
+	SoundController.play_sfx("WallConnect")
 
 func kick_enemies(area: Area2D):
 	for body in area.get_overlapping_bodies():
@@ -149,6 +157,7 @@ func kick_enemies(area: Area2D):
 			KickablesManager.kick.emit(body)
 
 func hurt_and_reset(body: Node2D):
+	SoundController.play_sfx("PlayerDie")
 	dead = true
 	hitstop(0.05, 0.6)
 	GlobalCamera.add_trauma(0.2)
