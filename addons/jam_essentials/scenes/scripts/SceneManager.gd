@@ -8,7 +8,7 @@ var call_queued = false
 var queued_method
 var queued_parameters
 
-var reset_music = true
+var reset_music = false
 
 var scenes  = {
 	"MainMenu" : "res://scenes/levels/main menu/mainmenu.tscn",
@@ -62,8 +62,10 @@ func _finish_transition():
 		if (current_scene != null):
 			current_scene.free()
 			
-		if reset_music: 
+		if !reset_music: 
 			choose_music()
+		else:
+			reset_music = false
 		
 		var s = ResourceLoader.load(scenes.get(current_path))
 		current_scene = s.instantiate()
@@ -78,7 +80,7 @@ func _finish_transition():
 
 # Queues a transition to the current scene
 func restart() -> void:
-	reset_music = false
+	reset_music = true
 	goto_scene(current_path)
 	
 # Chooses the correct music to play
