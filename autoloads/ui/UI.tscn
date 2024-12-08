@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhkx6741ia18o"]
+
+[ext_resource type="Script" path="res://autoloads/ui/ui.gd" id="1_mi6hb"]
+[ext_resource type="Theme" uid="uid://dmugtb10mnr6v" path="res://autoloads/ui/UI.tres" id="2_iua2d"]
+
+[node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_mi6hb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.682353)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_iua2d")
+
+[node name="ResetButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("2_iua2d")
+text = "reset level"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_iua2d")
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("2_iua2d")
+text = "return to start"
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -51.0
+offset_right = 128.0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("2_iua2d")
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Button" type="Button" parent="MarginContainer3"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+theme = ExtResource("2_iua2d")
+text = "quit game"

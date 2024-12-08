@@ -22,6 +22,7 @@ GlobalCamera="*res://addons/jam_essentials/scenes/GlobalCamera.tscn"
 SoundController="*res://addons/jam_essentials/scenes/SoundController.tscn"
 ExpDecay="*res://autoloads/ExpDecay.gd"
 KickablesManager="*res://autoloads/KickablesManager.tscn"
+Ui="*res://autoloads/ui/UI.tscn"
 
 [display]
 
