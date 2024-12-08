@@ -103,7 +103,6 @@ func _process(delta: float) -> void:
 				(AIRBORNE_ADJUST * delta) / (AIRBORNE_ADJUST / 10.0))
 		
 		air_hori_velocity = move_toward(air_hori_velocity, AIR_DRIFT_HORI_VELOCITY, 400.0 * delta)
-		print(air_hori_velocity)
 		
 		velocity.x = move_toward(velocity.x, jump_horizontal_dir * AIR_SPEED, \
 				air_hori_velocity * delta)
