@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dmugtb10mnr6v"]
+
+[ext_resource type="FontFile" uid="uid://bd4km3cq725qp" path="res://lib/fonts/RobotoMono-VariableFont_wght.ttf" id="1_cklaa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cnnw"]
+bg_color = Color(0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccfp1"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoll0"]
+bg_color = Color(0.460654, 0.69724, 0.232128, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 18
+Button/fonts/font = ExtResource("1_cklaa")
+Button/styles/hover = SubResource("StyleBoxFlat_1cnnw")
+Button/styles/normal = SubResource("StyleBoxFlat_ccfp1")
+Button/styles/pressed = SubResource("StyleBoxFlat_xoll0")
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 10

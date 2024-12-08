@@ -8,6 +8,10 @@ class_name Goal
 func _ready() -> void:
 	sprite.play("unkicked")
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_page_down"):
+		kicked()
+
 func kicked():
 	set_collision_layer_value(3, false)
 	var tween: Tween = create_tween()
