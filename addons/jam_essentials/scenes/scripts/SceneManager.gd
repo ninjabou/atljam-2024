@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene = null
-var current_path = "Default"
+var current_path = "MainMenu"
 var transitioning = false
 var call_queued = false
 
@@ -9,6 +9,7 @@ var queued_method
 var queued_parameters
 
 var scenes  = {
+	"MainMenu" : "res://scenes/levels/main menu/mainmenu.tscn",
 	"Default" : "res://scenes/levels/default level/default level.tscn",
 	"Level1" : "res://scenes/levels/level1/level1.tscn",
 	"Level2" : "res://scenes/levels/level2/level2.tscn",
@@ -53,7 +54,8 @@ func _finish_transition():
 	if transitioning:
 		transitioning = false
 		
-		current_scene.free()
+		if (current_scene != null):
+			current_scene.free()
 		
 		var s = ResourceLoader.load(scenes.get(current_path))
 		current_scene = s.instantiate()

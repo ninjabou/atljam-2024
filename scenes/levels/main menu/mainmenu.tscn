@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://be5yvowhdmhsr"]
+
+[ext_resource type="PackedScene" uid="uid://bxdxg6jh3h4mv" path="res://addons/jam_essentials/scenes/SceneManager.tscn" id="1_hngnq"]
+[ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/MainMenuController.gd" id="2_doqwh"]
+
+[node name="Mainmenu" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="MainMenuController" parent="Node" instance=ExtResource("1_hngnq")]
+script = ExtResource("2_doqwh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node"]
+offset_left = 496.0
+offset_top = 423.0
+offset_right = 1174.0
+offset_bottom = 620.0
+text = "Press any button"
