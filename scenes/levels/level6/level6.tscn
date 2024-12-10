@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://bn6mbj4710nbu"]
+[gd_scene load_steps=10 format=4 uid="uid://bn6mbj4710nbu"]
 
 [ext_resource type="PackedScene" uid="uid://dn3i3pnsv8lns" path="res://scenes/player/player.tscn" id="1_ji0x6"]
 [ext_resource type="TileSet" uid="uid://cwj58j6fsmdr2" path="res://scenes/levels/tile/new_tile_set.tres" id="3_awwcf"]
+[ext_resource type="Texture2D" uid="uid://xn26af7bxfo8" path="res://scenes/levels/misc textures/lamp_good.tres" id="3_xyrfp"]
 [ext_resource type="Texture2D" uid="uid://yuubtui1pkj3" path="res://scenes/levels/background/sky1.png" id="4_74mj6"]
 [ext_resource type="Texture2D" uid="uid://jgb1rk2rkdfk" path="res://scenes/levels/misc textures/cornerlamp.png" id="4_fbxyb"]
 [ext_resource type="Texture2D" uid="uid://c43vn4re3t8oy" path="res://scenes/levels/misc textures/lamp.png" id="5_4yc37"]
@@ -33,6 +34,18 @@ tile_set = ExtResource("3_awwcf")
 top_level = true
 color = Color(0, 0, 0, 1)
 
+[node name="PointLight2D26" type="PointLight2D" parent="CanvasModulate"]
+visible = false
+z_index = 5
+position = Vector2(-297, -542)
+rotation = 3.14159
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 8.5
+texture = ExtResource("3_xyrfp")
+texture_scale = 12.43
+
 [node name="PointLight2D6" type="PointLight2D" parent="CanvasModulate"]
 z_index = 5
 position = Vector2(-229, 6)
@@ -45,7 +58,8 @@ z_index = 5
 position = Vector2(556, 59)
 scale = Vector2(2.48, 2.48)
 blend_mode = 2
-texture = ExtResource("5_4yc37")
+shadow_enabled = true
+texture = ExtResource("3_xyrfp")
 
 [node name="PointLight2D2" type="PointLight2D" parent="CanvasModulate"]
 z_index = 5
@@ -107,10 +121,10 @@ texture = ExtResource("5_4yc37")
 
 [node name="PointLight2D10" type="PointLight2D" parent="CanvasModulate"]
 z_index = 5
-position = Vector2(699, 290)
-rotation = 3.14159
+position = Vector2(649, 202)
+rotation = -1.5708
 blend_mode = 2
-texture = ExtResource("4_fbxyb")
+texture = ExtResource("5_4yc37")
 
 [node name="PointLight2D11" type="PointLight2D" parent="CanvasModulate"]
 z_index = 5
