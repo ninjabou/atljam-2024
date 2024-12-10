@@ -92,6 +92,8 @@ func choose_music() -> void:
 		SoundController.play_music("DefaultLevel")
 	elif current_path == "Level1":
 		SoundController.play_music("RegularLevels")
+	elif current_path == "Level6":
+		SoundController.play_music("RegularLevels")
 	elif current_path == "Congrats":
 		SoundController.play_music("Ending")
 	
