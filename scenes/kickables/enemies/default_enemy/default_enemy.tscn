@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dof8y3pxi1lgb"]
+[gd_scene load_steps=12 format=3 uid="uid://dof8y3pxi1lgb"]
 
 [ext_resource type="Script" path="res://scenes/kickables/enemies/default_enemy/default_enemy.gd" id="1_vrmk1"]
-[ext_resource type="Material" uid="uid://cewkp83l5oh4m" path="res://scenes/unshaded.tres" id="2_66rx4"]
 [ext_resource type="Texture2D" uid="uid://rwu37akvitki" path="res://scenes/kickables/enemies/default_enemy/Croak Fly Enemy One Spritesheet.png" id="2_a46n6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kyvp"]
@@ -65,7 +64,6 @@ collision_layer = 12
 script = ExtResource("1_vrmk1")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-material = ExtResource("2_66rx4")
 scale = Vector2(0.41, 0.41)
 sprite_frames = SubResource("SpriteFrames_x8fn7")
 autoplay = "default"

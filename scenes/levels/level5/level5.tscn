@@ -7,14 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://yuubtui1pkj3" path="res://scenes/levels/background/sky1.png" id="5_a6pjn"]
 [ext_resource type="Texture2D" uid="uid://d3nwr4ucx7jd5" path="res://scenes/levels/background/buildings1.1.png" id="6_ukivx"]
 
-[sub_resource type="Environment" id="Environment_x8sxw"]
-background_mode = 3
-glow_enabled = true
-glow_normalized = true
-glow_intensity = 0.42
-glow_strength = 0.58
-glow_bloom = 0.51
-glow_blend_mode = 0
+[sub_resource type="Environment" id="Environment_f6ydy"]
 
 [node name="Level1" type="Node2D"]
 texture_filter = 1
@@ -31,7 +24,7 @@ tile_map_data = PackedByteArray("AAD6//D/AAAAAAQAAAD6/+//AAAAAAQAAAD6/+7/AAAAAAQ
 tile_set = ExtResource("2_ex2sf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_x8sxw")
+environment = SubResource("Environment_f6ydy")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -20

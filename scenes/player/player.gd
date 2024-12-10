@@ -12,6 +12,7 @@ const JUMP_VELOCITY := -290.0
 const AIRBORNE_ADJUST := 30.0
 const SIDE_KICK_HORI_VELOCITY := 769.0
 const AIR_DRIFT_HORI_VELOCITY := 1000.0
+const TERMINAL_VELOCITY := 1700.0
 
 @export var kicking := Kicks.NONE
 
@@ -30,6 +31,7 @@ var jump_horizontal_dir := 0.0
 var dead := false
 var air_hori_velocity := AIR_DRIFT_HORI_VELOCITY
 var was_airborne := false
+var drag := 0
 
 func _ready() -> void:
 	GlobalCamera.follow_pos(self.global_position)
@@ -50,7 +52,8 @@ func _process(delta: float) -> void:
 			sprite.play("airborne")
 		if !sprite.is_playing() && sprite.animation == "down_kick":
 			sprite.play("airborne")
-		velocity += get_gravity() * delta
+		drag = (TERMINAL_VELOCITY - velocity.y)/TERMINAL_VELOCITY if velocity.y > TERMINAL_VELOCITY*0.7 else 1
+		velocity += get_gravity() * delta * drag
 	else:
 		state = States.IDLE
 	
