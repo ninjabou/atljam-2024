@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cphg7hixce03s"]
+
+[ext_resource type="Script" path="res://scenes/levels/music/music_fadeout_area.gd" id="1_wm3gw"]
+
+[node name="MusicFadeoutArea" type="Node2D"]
+script = ExtResource("1_wm3gw")

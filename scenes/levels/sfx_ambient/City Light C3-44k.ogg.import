@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b7klkcw5v4ryd"
+path="res://.godot/imported/City Light C3-44k.ogg-b504a0dbea88bd2c6a7daa2a606d6169.oggvorbisstr"
+
+[deps]
+
+source_file="res://scenes/levels/sfx_ambient/City Light C3-44k.ogg"
+dest_files=["res://.godot/imported/City Light C3-44k.ogg-b504a0dbea88bd2c6a7daa2a606d6169.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
