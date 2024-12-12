@@ -12,7 +12,7 @@ const JUMP_VELOCITY := -290.0
 const AIRBORNE_ADJUST := 30.0
 const SIDE_KICK_HORI_VELOCITY := 769.0
 const AIR_DRIFT_HORI_VELOCITY := 1000.0
-const TERMINAL_VELOCITY := 1700.0
+const TERMINAL_VELOCITY := 1350.0
 
 @export var kicking := Kicks.NONE
 
@@ -31,7 +31,7 @@ var jump_horizontal_dir := 0.0
 var dead := false
 var air_hori_velocity := AIR_DRIFT_HORI_VELOCITY
 var was_airborne := false
-var drag := 0
+var terminal_velocity := TERMINAL_VELOCITY
 
 func _ready() -> void:
 	GlobalCamera.follow_pos(self.global_position)
@@ -52,8 +52,8 @@ func _process(delta: float) -> void:
 			sprite.play("airborne")
 		if !sprite.is_playing() && sprite.animation == "down_kick":
 			sprite.play("airborne")
-		drag = (TERMINAL_VELOCITY - velocity.y)/TERMINAL_VELOCITY if velocity.y > TERMINAL_VELOCITY*0.7 else 1
-		velocity += get_gravity() * delta * drag
+		velocity += get_gravity() * delta * (1 - get_drag())
+		#velocity.y = move_toward(velocity.y, TERMINAL_VELOCITY, get_gravity().y * delta)
 	else:
 		state = States.IDLE
 	
@@ -144,6 +144,21 @@ func _process(delta: float) -> void:
 	
 	if dead:
 		sprite.play("hurt")
+		
+func get_drag():
+	var drag_scalar := 0.0
+	var mult := 500
+	var threshold := 0.1
+	
+	if velocity.y > 0:
+		drag_scalar = exp(-pow((velocity.y - terminal_velocity) / mult, 2))
+	
+	if drag_scalar < threshold:
+		drag_scalar = 0
+	elif drag_scalar > 1 - threshold:
+		drag_scalar = 1
+	
+	return drag_scalar
 
 func kicks_reset():
 	#sprite.stop()
